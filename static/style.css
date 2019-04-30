@@ -1,0 +1,217 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+/* a tag restyling */
+a {
+	color: inherit;
+	cursor: pointer;
+}
+a::selection {
+	background-color: transparent;
+}
+
+/* Default styles */
+html {
+	background-color: #eee;
+}
+body {
+	width: 100vw;
+	height: 100vh;
+	font-family: monospace;
+	color: #111;
+	font-size: 12pt;
+	position: relative;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: stretch;
+	line-height: 1.2;
+	padding-bottom: 4pt;
+	overflow: hidden;
+}
+* {
+	box-sizing: border-box;
+}
+
+/* social tag styling */ 
+#social {
+	padding: 0.25ch 0 0.25ch 0;
+	white-space: pre;
+	max-width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	border-bottom: 1px solid #111;
+	margin-bottom: 4pt;
+}
+a.reset, #social > a {
+    text-decoration: none;
+    outline: none;
+}
+#social > a {
+	color: #111;
+	margin: 0.25ch;
+    padding: 0 1ch;
+}
+#social > a:hover, #social > a#highlight {
+	filter: brightness(0.8);
+}
+#social > a:active {
+	filter: brightness(0.6) !important;
+}
+
+/* a tags as list entries */
+.entry {
+    display: block;
+    padding: 0.25ch;
+    margin: 0.25ch;
+    color: initial !important;
+    text-decoration: none;
+}
+.entry:hover {
+    background-color: #dedede;
+}
+.entry:active {
+    background-color: #dbdbdb;
+}
+.entry.disabled {
+    cursor: not-allowed;
+}
+
+/* When body is open, what to do */
+body.open {
+    justify-content: flex-start;
+    margin-top: 0px;
+}
+body.open > #content {
+    flex-grow: 1;
+}
+body.open > #profile {
+    height: 0px;
+}
+body.open > .spacer {
+    flex-grow: 0;
+}
+body.open > #blurb {
+    height: 0;
+    overflow-y: hidden;
+}
+
+/* My name and associated blurb for front page */
+#name {
+	font-size: 1.25em;
+	text-align: center;
+	border-bottom: 1px solid #111;
+	padding: 4pt 0 4pt 0;
+}
+#blurb {
+	max-width: 700px;
+	text-align: center;
+	align-self: center;
+	flex: 0 0 auto;
+	height: 4em;
+    overflow-y: visible;
+}
+
+/* the spacers for front page alignment */
+.spacer {
+	flex: 1 0 auto;
+}
+
+/* all content styling */
+#content {
+	flex: 0 0 auto;
+	position: relative;
+	width: 100%;
+	align-self: center;
+	box-sizing: border-box;
+}
+.section {
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	flex: 0 0 auto;
+	z-index: 0;
+	overflow-y: scroll;
+}
+.section-container {
+    margin: 0 auto;
+	padding: 0 4pt;
+    width: 100%;
+    min-height: 100%;
+    max-width: 700px;
+    border-width: 0 5px 0 5px;
+    border-style: solid;
+    border-color: transparent;
+    border-top: 1px solid transparent;
+    border-top-color: transparent !important;
+}
+.section.selected, #loading {
+    z-index: 1;
+    opacity: 1;
+}
+.section.selected ~ #loading, .section.selected ~ .section#loading > .text {
+    z-index: -1;
+    opacity: 0;
+}
+.section#loading, .section#loading > .text {
+    font-size: 1.5rem;
+    text-align: center;
+    padding-top: 2rem;
+    color: #999;
+}
+
+#jslicense-labels1 td {
+    padding: 0 1ch;
+}
+
+/* section colourings */
+.projects-bg {
+    background-color: #44af69;
+}
+.blog-bg {
+    background-color: #f8333c;
+}
+.contact-bg {
+    background-color: #2b9eb3;
+}
+.about-bg {
+    background-color: #ff6600;
+}
+
+/* Transition styles */
+body {
+    transition: margin-top 0.5s ease-out 0s;
+}
+.section {
+    transition: opacity 0.5s ease-out 0s;
+}
+#blurb {
+    transition: height 0.5s ease-out 0s;
+}
+.spacer, #content {
+    transition: flex-grow 0.5s ease-out 0s;
+}
+.section#loading {
+    transition-delay: 0.5s;
+}
+.section#loading > .text {
+    transition-delay: 0s;
+}
