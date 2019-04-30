@@ -18,19 +18,23 @@
         yet still looks nice and behaves like a single page app, and can
         gracefully drop back if JavaScript is disabled. I think I succeeded in
         that respect.
-        <br/>
-        <br/>
-        - When Javascript is disabled, links to different endpoints call
-        prerendered static assets that are identical to what would be
-        dynamically loaded if JS were enabled.
-        <br/>
-        - Aside from content and profile picture, the server sends less than 5
-        kilobytes over the network after assets are minified and compressed.
-        <br/>
-        - When Javascript is enabled, it takes over regular link behaviour and
-        uses XHR and the History API instead, loading only the content you need.
-        <br/>
-        <br/>
+        <ul>
+            <li>
+                Aside from content and profile picture, the server sends less
+                than 5 kilobytes over the network after assets are minified and
+                compressed.
+            </li>
+            <li>
+                When Javascript is disabled, links to different endpoints
+                request prerendered static assets that are identical to what
+                would be dynamically loaded if JS were enabled.
+            </li>
+            <li>
+                When Javascript is enabled, it takes over regular link
+                behaviour and uses XHR and the History API instead, loading
+                only the content you need.
+            </li>
+        </ul>
         To see the source code, go to 
         <a href='https://github.com/dylan-thinnes/me-two'>Github</a>.  
     </small>
