@@ -1,0 +1,2 @@
+#!/bin/bash
+http-server ./dist -C ./ssl/domain.crt -K ./ssl/domain.key -S
