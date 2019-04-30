@@ -30,11 +30,13 @@ mockCollection = function (collection) {
 
 // Given an <a>, binds navigateTo and preventDefault, marks link as mocked
 mockLink = function (a) {
-    a.addEventListener("click", prevDefaultCallback);
-    a.addEventListener("click", navigateTo.bind(window, a.href));
+    a.addEventListener("click", function (e) {
+        if (e.ctrlKey === true) return;
+        e.preventDefault();
+        navigateTo(a.href);
+    });
     a.setAttribute("data-mocked", "true");
 }
-prevDefaultCallback = function (e) { e.preventDefault(); }
 
 // Check if an <a> node references a local path and hasn't been mocked
 // mocking is the act by which we take a link and suppress it with JS
