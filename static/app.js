@@ -11,9 +11,6 @@ PARTICULAR PURPOSE.  See the GNU General Public License for more details.
 https://www.gnu.org/licenses/
 */
 
-
-//= require_tree .
-
 /* Link event binding code. */
 // Given a node, finds all <a> tags and mocks them
 mockNode = function (node) {
