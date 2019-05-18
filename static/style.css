@@ -162,6 +162,7 @@ body.open > #blurb {
     border-color: transparent;
     border-top: 1px solid transparent;
     border-top-color: transparent !important;
+    overflow-y: hidden;
 }
 .section.selected, #loading {
     z-index: 1;
