@@ -7,6 +7,8 @@
 ) | sort -gr | cut -d " " -f 2- | (
     while read line
     do
+        echo "<p>"
         ./get/project/entry.sh "$line"
+        echo "</p>"
     done
 )
