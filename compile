@@ -55,7 +55,7 @@ do
 done
 
 # Minification...
-if [[ "$MODE" =~ "prod" ]]
+if [[ "$MODE" =~ "prod" ]] || [[ "$1" =~ "prod" ]]
 then
     for pathname in dist/**
     do
