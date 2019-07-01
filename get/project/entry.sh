@@ -19,11 +19,11 @@ fi
 BODY=`./get/body.sh "$1"`
 
 echo "\
-$OPENING
-  <b class='text'>$TITLE</b><br/>
-  <small>
+<div>
+  $OPENING
+    <h3 class='text'>$TITLE</h3>
     $BODY
-  </small>
-$CLOSING\
+  $CLOSING\
+</div>
 "
 

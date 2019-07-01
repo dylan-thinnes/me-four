@@ -30,8 +30,7 @@ html {
 body {
 	width: 100vw;
 	height: 100vh;
-	font-family: monospace;
-	color: #111;
+	color: #222;
 	font-size: 12pt;
 	position: relative;
 	margin: 0;
@@ -39,12 +38,17 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	align-items: stretch;
-	line-height: 1.2;
+	line-height: 1.4;
 	padding-bottom: 4pt;
 	overflow: hidden;
 }
 * {
 	box-sizing: border-box;
+}
+ul {
+    list-style-type: square;
+    padding-left: 3ch;
+    padding-right: 3ch;
 }
 
 /* social tag styling */ 
@@ -78,7 +82,7 @@ a.reset, #social > a {
 .entry {
     display: block;
     padding: 0.25ch;
-    margin: 0.25ch;
+    margin: 1ch -0.25ch;
     color: initial !important;
     text-decoration: none;
 }
@@ -90,6 +94,10 @@ a.reset, #social > a {
 }
 .entry.disabled {
     cursor: not-allowed;
+}
+.entry > h3 {
+    margin: 0;
+    margin-bottom: 2pt;
 }
 
 /* When body is open, what to do */
@@ -153,7 +161,7 @@ body.open > #blurb {
 }
 .section-container {
     margin: 0 auto;
-	padding: 0 4pt;
+	padding: 0 10pt;
     width: 100%;
     min-height: 100%;
     max-width: 700px;

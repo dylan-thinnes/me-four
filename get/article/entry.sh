@@ -14,14 +14,11 @@ DATE=`./get/article/date.sh "$1"`
 BASEPATH=`./get/article/basepath.sh "$1"`
 
 echo "\
-<p>
+<div>
     <a href='$BASEPATH' class='entry'>
-      <b class='text'>$TITLE</b><br>
-      <small>
-        By $AUTHOR, <i>Last Edited $DATE</i><br>
-        $BLURB
-
-      </small>
+      <h3 class='text'>$TITLE</h3>
+      By $AUTHOR, <i>Last Edited $DATE</i><br>
+      $BLURB
     </a>\
-</p>
+</div>
 "
