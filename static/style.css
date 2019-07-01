@@ -68,9 +68,12 @@ a.reset, #social > a {
     outline: none;
 }
 #social > a {
-	color: #111;
+	color: black;
 	margin: 0.25ch;
     padding: 0 1ch;
+    font-size: 1.2rem;
+    width: 9ch;
+    text-align: center;
 }
 #social > a:hover, #social > a#highlight {
 	filter: brightness(0.8);
@@ -122,10 +125,10 @@ body.open > #blurb {
 
 /* My name and associated blurb for front page */
 #name {
-	font-size: 1.25em;
+	font-size: 1.5em;
 	text-align: center;
 	border-bottom: 1px solid #111;
-	padding: 4pt 0 4pt 0;
+	padding: 4pt 0 3pt 0;
 }
 #blurb {
 	max-width: 700px;
@@ -133,6 +136,7 @@ body.open > #blurb {
 	align-self: center;
 	flex: 0 0 auto;
 	height: 4em;
+    font-size: 1.10em;
     overflow-y: visible;
 }
 
