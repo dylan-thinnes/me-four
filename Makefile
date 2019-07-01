@@ -5,6 +5,9 @@ SHELL = /bin/bash
 # Use the makelog directory to remember when a target was last run
 VPATH = ./makelog:.
 
+all : front static_assets blog contact about projects
+prod : all minify
+
 static_assets : static/*
 	./compile/static.sh
 	./compile/makelog.sh static_assets
@@ -29,9 +32,6 @@ about : front ./get/html-assets/about/*
 projects : front ./get/project/* ./get/html-assets/projects/* ./src/projects/*
 	./compile/section.sh projects
 	./compile/makelog.sh projects
-
-all : front static_assets blog contact about projects
-prod : all minify
 
 MINIFIABLE = $(shell find dist/ -type f -name '*.html' -or -name '*.css' -or -name '*.js')
 minify : ${MINIFIABLE}
