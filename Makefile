@@ -12,7 +12,7 @@ static_assets : static/*
 	./compile/static.sh
 	./compile/makelog.sh static_assets
 
-front : get/index.sh static_assets
+front : ./get/*.sh static_assets
 	echo "" | ./get/index.sh "" "/" > ./dist/index.html
 	./compile/makelog.sh front
 
