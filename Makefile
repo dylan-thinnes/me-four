@@ -9,24 +9,24 @@ static_assets : static/*
 	./compile/static.sh
 	./compile/makelog.sh static_assets
 
-front : get/index.sh
+front : get/index.sh static_assets
 	echo "" | ./get/index.sh "" "/" > ./dist/index.html
 	./compile/makelog.sh front
 
-blog : front ./get/html-assets/blog/* ./get/article/*
+blog : front ./get/article/* ./get/html-assets/blog/* ./src/articles/*
 	./compile/section.sh blog
 	./compile/articles.sh
 	./compile/makelog.sh blog
 
-contact : front ./get/html-assets/contact/* ./get/article/*
+contact : front ./get/html-assets/contact/*
 	./compile/section.sh contact
 	./compile/makelog.sh contact
 
-about : front ./get/html-assets/about/* ./get/article/*
+about : front ./get/html-assets/about/*
 	./compile/section.sh about
 	./compile/makelog.sh about
 
-projects : front ./get/html-assets/projects/* ./get/article/*
+projects : front ./get/project/* ./get/html-assets/projects/* ./src/projects/*
 	./compile/section.sh projects
 	./compile/makelog.sh projects
 
