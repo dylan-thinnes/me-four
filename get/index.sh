@@ -1,7 +1,7 @@
 TITLE="$1"
 if [[ -z "$TITLE" ]]
 then
-    TITLE="Dylan Thinnes"
+    TITLE="Dylan Joseph Thinnes"
 fi
 URL="$2"
 if [[ "$URL" == "/" ]]
