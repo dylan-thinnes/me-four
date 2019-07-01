@@ -28,6 +28,7 @@ html {
 	background-color: #eee;
 }
 body {
+    font-family: 'sans serif';
 	width: 100vw;
 	height: 100vh;
 	color: #222;
