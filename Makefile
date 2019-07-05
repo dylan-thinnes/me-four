@@ -41,3 +41,4 @@ minify : ${MINIFIABLE}
 .PHONY : clean
 clean : 
 	rm -r ./dist/*
+	rm -r ./makelog/*
