@@ -1,7 +1,6 @@
 #!/bin/bash
 mkdir -p ./dist/static
-shopt -s globstar
-for pathname in static/**
+for pathname in `find static/`
 do
     if [[ -f "$pathname" ]]
     then

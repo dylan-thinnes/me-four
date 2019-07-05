@@ -1,8 +1,7 @@
 #!/bin/bash
-shopt -s globstar
 mkdir -p ./dist/blog
 mkdir -p ./dist/nolayout/blog
-for pathname in src/articles/**
+for pathname in src/articles/*
 do
     if [[ -f "$pathname" ]]
     then
