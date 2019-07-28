@@ -34,6 +34,8 @@ projects : front ./get/project/* ./get/html-assets/projects/* ./src/projects/*
 	./compile/makelog.sh projects
 
 links : front ./get/project/* ./get/html-assets/links/* ./src/links/*
+	mkdir -p dist
+	cp -r clone dist
 	./compile/section.sh links
 	./compile/makelog.sh links
 
