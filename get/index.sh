@@ -43,6 +43,7 @@ echo "
             <a class='projects-bg' href='/projects'>projects</a>
             <a class='blog-bg' href='/blog'>blog</a>
             <a class='about-bg' data-jslicense='1' href='/about'>about</a>
+            <a class='links-bg' href='/links'>links</a>
         </div>
         <div id='blurb'>
             I am a student of Comp Sci at the University of
