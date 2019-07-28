@@ -96,6 +96,8 @@ showCurrentPage = function () {
             var section = createSection(path, content);
             setTitleFromSection(section);
             setTimeout(selectSection.bind(window, path), 100);
+        }, function (response) {
+            errorSection("Error " + response.status + " has occurred.<br/>" + response.response);
         });
     } else {
         var section = selectSection(path);
@@ -115,11 +117,12 @@ setTitleFromSection = function (section) {
 
 /* URL getting and replacement */
 // gets the content at the endpoint without the layout
-getContent = function (url, callback) {
+getContent = function (url, callback, error) {
     var req = new XMLHttpRequest();
     req.onreadystatechange = function () {
         if (req.readyState == 4) {
-            callback(req.response);
+            if (req.status == 200) callback(req.response);
+            else                   error(req);
         }
     }
     if (url[0] != "/") throw "Url is not absolute."
@@ -135,6 +138,7 @@ getContent = function (url, callback) {
 
 // Finds the section corresponding to a given url
 findSection = function (url) {
+    if (url === "ERROR") return document.querySelector(".section#error");
     var sections = document.getElementsByClassName("section");
     for (var ii = 0; ii < sections.length; ii++) {
         var section = sections[ii];
@@ -181,10 +185,21 @@ clearSelection = function (url) {
     }
 }
 
+// select the error section
+errorSection = function (newError) {
+    console.log("SETTING ERROR: ", newError);
+    var errorText = findSection("ERROR").getElementsByClassName("text")[0];
+    if (errorText != null) errorText.innerHTML = newError;
+    selectSection("ERROR");
+}
+
 // Initialize mocking of links in page.
 mockNode(document);
 console.log("Nodes mocked.")
 
 var loading = document.querySelector(".section#loading");
 loading.style.display = null;
+
+var error = document.querySelector(".section#error");
+error.style.display = null;
 

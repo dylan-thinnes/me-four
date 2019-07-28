@@ -185,7 +185,8 @@ body.open > #blurb {
     z-index: -1;
     opacity: 0;
 }
-.section#loading, .section#loading > .text {
+.section#loading, .section#loading > .text,
+.section#error,   .section#error   > .text {
     font-size: 1.5rem;
     text-align: center;
     padding-top: 2rem;
@@ -223,9 +224,11 @@ body {
 .spacer, #content {
     transition: flex-grow 0.5s ease-out 0s;
 }
-.section#loading {
+.section#loading,
+.section#error {
     transition-delay: 0.5s;
 }
-.section#loading > .text {
+.section#loading > .text,
+.section#error   > .text {
     transition-delay: 0s;
 }
