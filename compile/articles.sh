@@ -14,7 +14,10 @@ do
         mkdir -p "$NOLAYOUTPATH"
         TITLE=`./get/article/title.sh "$pathname"`
 
-        HTML="<title>$TITLE</title>\n$DATA"
+        HTML="""
+            <title>$TITLE</title>
+            $DATA
+        """
 
         echo "$HTML" | ./get/index.sh "$TITLE" "$BASEPATH/index.html" > $ROOTPATH/index.html
         echo "$HTML" > $NOLAYOUTPATH/index.html
