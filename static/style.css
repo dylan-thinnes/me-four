@@ -193,6 +193,9 @@ body.open > #blurb {
     padding-top: 2rem;
     color: #999;
 }
+.section pre {
+    overflow-x: auto;
+}
 
 #jslicense-labels1 td {
     padding: 0 1ch;
