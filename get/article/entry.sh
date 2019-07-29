@@ -17,7 +17,7 @@ echo "\
 <div>
     <a href='$BASEPATH' class='entry'>
       <h3 class='text'>$TITLE</h3>
-      By $AUTHOR, <i>Last Edited $DATE</i><br>
+      <small>By $AUTHOR, <i>Last Edited $DATE</i><br></small>
       $BLURB
     </a>\
 </div>
