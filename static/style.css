@@ -16,7 +16,7 @@
 
 /* a tag restyling */
 a {
-	color: inherit;
+	/* color: inherit; */
 	cursor: pointer;
 }
 a::selection {
@@ -66,6 +66,7 @@ ul {
 a.reset, #social > a {
     text-decoration: none;
     outline: none;
+    color: inherit;
 }
 #social > a {
 	color: black;

@@ -40,8 +40,5 @@ $selector h1, $selector h2 {
     border-bottom: 2px solid $color;
     padding-bottom: 4pt;
 }
-$selector a {
-    color: $color;
-}
 </style>
 "
