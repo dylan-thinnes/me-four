@@ -8,7 +8,7 @@ LINK=`./get/project/link.sh "$1"`
 DEPRECATED=`./get/project/deprecated.sh "$1"`
 if [[ $DEPRECATED == "true" ]]
 then
-    OPENING="<a class='entry disabled'>"
+    OPENING="<a class='entry disabled deprecated-project'>"
     CLOSING="</a>"
 else
     OPENING="<a href='$LINK' class='entry'>"

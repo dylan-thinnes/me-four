@@ -100,6 +100,10 @@ a.reset, #social > a {
 .entry.disabled {
     cursor: not-allowed;
 }
+.entry.deprecated-project::after {
+    content: "Now deprecated.";
+    font-weight: bold;
+}
 .entry > h3 {
     margin: 0;
     margin-bottom: 2pt;
