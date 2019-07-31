@@ -1,7 +1,7 @@
 (
     for filename in `ls src/links/*.link`
     do
-        PRECEDENCE=`./get/article/precedence.sh "$filename"`
+        PRECEDENCE=`./get/links/precedence.sh "$filename"`
         echo "$PRECEDENCE $filename"
     done 
 ) | sort -gr | cut -d " " -f 2- | (
