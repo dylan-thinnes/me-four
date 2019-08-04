@@ -1,1 +1,1 @@
-stat --format="%X" "$1"
+stat --format="%Y" "$1"
