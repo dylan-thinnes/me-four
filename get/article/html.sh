@@ -18,7 +18,7 @@ FILENAME=${FILENAME%.*}
 MARKDOWN=`./get/body.sh "$1"`
 
 echo "\
-## $TITLE
+# $TITLE
 By $AUTHOR, *Last Edited $DATE*
 
 $MARKDOWN
