@@ -1,1 +1,1 @@
-pandoc --from markdown --to html --webtex
+pandoc --from markdown --to html --webtex $@
