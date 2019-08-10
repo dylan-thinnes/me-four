@@ -52,10 +52,10 @@ echo "
         </div>
         <div id='content'>
             $CONTENT
-            <div class='section' id='error' style='display: none'>
+            <div class='section' id='error'>
                 <div class='text'>An error occurred.</div>
             </div>
-            <div class='section' id='loading' style='display: none'>
+            <div class='section' id='loading'>
                 <div class='text'>Loading...</div>
             </div>
         </div>
