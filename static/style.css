@@ -91,10 +91,10 @@ a.reset, #social > a {
     color: initial !important;
     text-decoration: none;
 }
-.entry:hover {
+.entry:hover, .button:hover {
     background-color: #dedede;
 }
-.entry:active {
+.entry:active, .button:active {
     background-color: #dbdbdb;
 }
 .entry.disabled {
@@ -211,6 +211,22 @@ body.open > #blurb {
 .section pre code {
     margin: 0;
     padding: 0;
+}
+
+/* table of contents */
+.toc > h3 > .toggler {
+    margin-left: 2ch;
+    font-size: 0.75em;
+    font-weight: regular;
+}
+.toc > h3 > .toggler::after {
+    content: "[Hide]"
+}
+.toc.hidden > h3 > .toggler::after {
+    content: "[Show]"
+}
+.toc.hidden > ul {
+    display: none;
 }
 
 #jslicense-labels1 td {

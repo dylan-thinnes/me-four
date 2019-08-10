@@ -165,8 +165,25 @@ createSection = function (url, content) {
 
     content.insertBefore(section, loading);
     mockNode(section);
+    initSection(section);
 
     return section;
+}
+
+initSection = function (section) {
+    console.log("Initting...")
+    var toc = section.getElementsByClassName("toc")[0];
+    console.log("Toc: ", toc);
+    if (toc != null) {
+        var toggler = document.createElement("a");
+        toggler.className = "toggler button";
+        toggler.addEventListener("click", function () {
+            toc.classList.toggle("hidden")
+        })
+
+        var title = toc.getElementsByTagName("h3")[0];
+        title.appendChild(toggler);
+    }
 }
 
 // select a section
@@ -175,6 +192,10 @@ selectSection = function (url) {
     section = findSection(url);
     section.classList.add("selected");
     return section;
+}
+
+getSelectedSections = function () {
+    return document.querySelectorAll(".section.selected");
 }
 
 // unselect all sections
@@ -197,9 +218,7 @@ errorSection = function (newError) {
 mockNode(document);
 console.log("Nodes mocked.")
 
-var loading = document.querySelector(".section#loading");
-loading.style.display = null;
-
-var error = document.querySelector(".section#error");
-error.style.display = null;
-
+var ss = getSelectedSections();
+for (var ii = 0; ii < ss.length; ii++) {
+    initSection(ss[ii]);
+}
