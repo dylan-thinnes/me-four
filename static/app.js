@@ -171,9 +171,7 @@ createSection = function (url, content) {
 }
 
 initSection = function (section) {
-    console.log("Initting...")
     var toc = section.getElementsByClassName("toc")[0];
-    console.log("Toc: ", toc);
     if (toc != null) {
         var toggler = document.createElement("a");
         toggler.className = "toggler button";
