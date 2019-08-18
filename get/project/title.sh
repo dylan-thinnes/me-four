@@ -1,1 +1,1 @@
-./get/meta.sh "$1" | head -n1
+./get/meta.sh "$1" | ./utils/nth-line.sh 1
