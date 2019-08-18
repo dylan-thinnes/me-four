@@ -23,5 +23,4 @@ By $AUTHOR, *Last Edited $DATE*
 " | ./utils/markdown.sh
 
 ./get/article/toc.sh "$1"
-
-echo "$MARKDOWN" | ./utils/markdown.sh
+echo "$MARKDOWN" | ./utils/markdown.sh --no-highlight
