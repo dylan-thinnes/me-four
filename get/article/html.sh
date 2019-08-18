@@ -24,3 +24,4 @@ By $AUTHOR, *Last Edited $DATE*
 
 ./get/article/toc.sh "$1"
 echo "$MARKDOWN" | ./utils/markdown.sh --no-highlight
+./get/article/languages.sh "$1"
