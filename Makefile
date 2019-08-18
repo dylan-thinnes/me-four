@@ -8,7 +8,8 @@ VPATH = ./makelog:.
 all : front static_assets blog contact about projects links
 prod : all minify
 
-static_assets : static/*
+RECURSIVE_STATIC = $(shell find static/)
+static_assets : ${RECURSIVE_STATIC}
 	./compile/static.sh
 	./compile/makelog.sh static_assets
 
