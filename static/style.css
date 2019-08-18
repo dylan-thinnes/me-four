@@ -198,19 +198,11 @@ body.open > #blurb {
     color: #999;
 }
 .section pre {
-    padding: 1ch;
     overflow-x: auto;
-    background-color: #222;
-    color: #ddd;
-}
-.section code {
-    padding: 0 0.5ch;
-    background-color: #222;
-    color: #ddd;
 }
 .section pre code {
-    margin: 0;
-    padding: 0;
+    padding: 1ch;
+    display: block;
 }
 
 /* table of contents */
