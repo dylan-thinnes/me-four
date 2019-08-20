@@ -13,13 +13,18 @@ static_assets : ${RECURSIVE_STATIC}
 	./compile/static.sh
 	./compile/makelog.sh static_assets
 
-front : ./get/*.sh static_assets
+FAVICON  = $(shell find get/html-assets/favicon/)
+PROFILE  = $(shell find get/html-assets/profile/)
+COLORIZE = $(shell find get/section-colorize.sh)
+STYLE    = $(shell find static/style.css)
+SCRIPT   = $(shell find static/app.js)
+front : ./get/*.sh ${FAVICON} ${PROFILE} ${COLORIZE} ${STYLE} ${SCRIPT}
 	echo "" | ./get/index.sh "" "/" > ./dist/index.html
 	./compile/makelog.sh front
 
 blog : front ./get/article/* ./get/html-assets/blog/* ./src/articles/*
 	./compile/section.sh blog
-	./compile/articles.sh
+	./compile/articles.sh $?
 	./compile/makelog.sh blog
 
 contact : front ./get/html-assets/contact/*

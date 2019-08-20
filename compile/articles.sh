@@ -1,7 +1,7 @@
 #!/bin/bash
 mkdir -p ./dist/blog
 mkdir -p ./dist/nolayout/blog
-for pathname in src/articles/*
+for pathname in $@
 do
     if [[ -f "$pathname" ]]
     then
