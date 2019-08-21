@@ -3,7 +3,7 @@ mkdir -p ./dist/blog
 mkdir -p ./dist/nolayout/blog
 for pathname in $@
 do
-    if [[ -f "$pathname" ]]
+    if [[ -f "$pathname" ]] && [[ "$pathname" =~ ".article" ]]
     then
         DATA=`./get/article/html.sh "$pathname"`
         BASEPATH=`./get/article/basepath.sh "$pathname"`
