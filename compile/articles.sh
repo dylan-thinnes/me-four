@@ -22,6 +22,17 @@ do
         echo "$HTML" | ./get/index.sh "$TITLE" "$BASEPATH/index.html" > $ROOTPATH/index.html
         echo "$HTML" > $NOLAYOUTPATH/index.html
     fi
+
+    if [[ "$pathname" == "./get/article/makefile.sh" ]]
+    then
+        for pathname in `ls ./src/articles/*.article`
+        do
+            BASENAME=${pathname##*/}
+            BASENAME=${BASENAME%%.*}
+            mkdir -p makefiles/articles
+            ./get/article/makefile.sh "$pathname" > makefiles/articles/$BASENAME
+        done
+    fi
 done
 
 
