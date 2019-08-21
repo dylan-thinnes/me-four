@@ -1,2 +1,7 @@
 #!/bin/bash
-mkdir -p ./makelog && touch "./makelog/$1"
+for arg in $@
+do
+    FILENAME="./$arg"
+    DIR="${FILENAME%/*}"
+    mkdir -p "./makelog/$DIR" && touch "./makelog/$FILENAME"
+done
