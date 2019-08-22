@@ -170,18 +170,57 @@ createSection = function (url, content) {
     return section;
 }
 
+// Initializes a new section by building a toc & running all scripts.
 initSection = function (section) {
-    var toc = section.getElementsByClassName("toc")[0];
-    if (toc != null) {
-        var toggler = document.createElement("a");
-        toggler.className = "toggler button";
-        toggler.addEventListener("click", function () {
-            toc.classList.toggle("hidden")
-        })
+    // This runs after all scripts are fetched.
+    var rest = function () {
+        var toc = section.getElementsByClassName("toc")[0];
+        if (toc != null) {
+            var toggler = document.createElement("a");
+            toggler.className = "toggler button";
+            toggler.addEventListener("click", function () {
+                toc.classList.toggle("hidden")
+            })
 
-        var title = toc.getElementsByTagName("h3")[0];
-        title.appendChild(toggler);
+            var title = toc.getElementsByTagName("h3")[0];
+            title.appendChild(toggler);
+        }
     }
+
+    // Explicitly execute scripts
+    var scripts = section.getElementsByTagName("script");
+    var ii = 0;
+    var runScript = function () {
+        // Get current script, then progress counter to next script.
+        var origScript = scripts[ii];
+        ii++;
+
+        // If the original script is null, just run the rest
+        if (origScript == null) {
+            rest();
+        } else {
+            var newScript = document.createElement("script");
+            newScript.type = 'text/javascript'
+            if (origScript.src) {
+                // If remote, run as remote and run rest of scripts once this
+                // one is done / errors out
+                newScript.onload = runScript
+                newScript.onerror = runScript
+                newScript.src = origScript.src
+                document.head.appendChild(newScript);
+            } else {
+                // If inline, just run that code
+                try {
+                    newScript.textContent = origScript.innerText
+                    document.head.appendChild(newScript);
+                } catch {
+                    console.log("Error occurred with script: ", origScript);
+                }
+                runScript();
+            }
+        }
+    }
+    runScript();
 }
 
 // select a section
