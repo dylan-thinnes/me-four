@@ -1,6 +1,6 @@
 #!/bin/bash
 mkdir -p ./dist/static
-for pathname in `find static/`
+for pathname in $@
 do
     if [[ -f "$pathname" ]]
     then

@@ -10,7 +10,7 @@ prod : all minify
 
 RECURSIVE_STATIC = $(shell find static/ -type f -not -name ".*")
 static_assets : ${RECURSIVE_STATIC}
-	./compile/static.sh
+	./compile/static.sh $?
 	./compile/makelog.sh static_assets
 
 FAVICON  = $(shell find get/html-assets/favicon/ -type f -not -name ".*")
