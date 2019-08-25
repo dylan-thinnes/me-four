@@ -8,17 +8,26 @@ do
         then
             echo "Minifying $pathname"
             MIN=`./utils/minify/js.sh "$pathname"`
-            echo "$MIN" > "$pathname"
+            if [[ $? == 0 ]]
+            then
+                echo "$MIN" > "$pathname"
+            fi
         elif [[ "$EXT" == "css" ]]
         then
             echo "Minifying $pathname"
             MIN=`./utils/minify/css.sh "$pathname"`
-            echo "$MIN" > "$pathname"
+            if [[ $? == 0 ]]
+            then
+                echo "$MIN" > "$pathname"
+            fi
         elif [[ "$EXT" == "html" ]]
         then
             echo "Minifying $pathname"
             MIN=`./utils/minify/html.sh "$pathname"`
-            echo "$MIN" > "$pathname"
+            if [[ $? == 0 ]]
+            then
+                echo "$MIN" > "$pathname"
+            fi
         fi
     fi
 done
