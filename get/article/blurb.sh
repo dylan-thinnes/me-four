@@ -1,1 +1,1 @@
-./get/meta.sh "$1" | tail -n +3
+./get/meta.sh "$1" | ./utils/nth-line.sh 3

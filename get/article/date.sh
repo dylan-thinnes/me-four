@@ -1,1 +1,1 @@
-date -r "$1"
+date -d "@`./get/article/precedence.sh $1`"
