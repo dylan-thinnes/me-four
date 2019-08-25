@@ -21,6 +21,8 @@ do
 
         echo "$HTML" | ./get/index.sh "$TITLE" "$BASEPATH/index.html" > $ROOTPATH/index.html
         echo "$HTML" > $NOLAYOUTPATH/index.html
+
+        ./compile/makelog.sh $pathname
     fi
 
     if [[ "$pathname" == "./get/article/makefile.sh" ]]

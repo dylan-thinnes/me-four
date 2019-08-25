@@ -25,7 +25,7 @@ front : ./get/*.sh ${FAVICON} ${PROFILE} ${COLORIZE} ${STYLE} ${SCRIPT}
 blog : front ./get/article/* ./get/html-assets/blog/* ./src/articles/*
 	./compile/section.sh blog
 	./compile/articles.sh $?
-	./compile/makelog.sh blog $?
+	./compile/makelog.sh blog
 
 contact : front ./get/html-assets/contact/*
 	./compile/section.sh contact
