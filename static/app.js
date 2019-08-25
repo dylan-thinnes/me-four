@@ -213,7 +213,7 @@ initSection = function (section) {
                 try {
                     newScript.textContent = origScript.innerText
                     document.head.appendChild(newScript);
-                } catch {
+                } catch (e) {
                     console.log("Error occurred with script: ", origScript);
                 }
                 runScript();
