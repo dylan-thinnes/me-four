@@ -1,7 +1,30 @@
 #!/bin/bash
 mkdir -p ./dist/blog
 mkdir -p ./dist/nolayout/blog
-for pathname in $@
+
+# Extract articles that need remaking
+ARTICLES=$(
+    for pathname in $@
+    do
+        if [[ "$pathname" == "./get/article/makefile.sh" ]]
+        then
+            for pathname in `ls ./src/articles/*.article`
+            do
+                BASENAME=${pathname##*/}
+                BASENAME=${BASENAME%%.*}
+                mkdir -p makefiles/articles
+                ./get/article/makefile.sh "$pathname" > makefiles/articles/$BASENAME
+            done
+        elif [[ "$pathname" =~ ".article" ]]
+        then
+            echo $pathname
+        else
+            ls ./src/articles/*.article
+        fi
+    done | sort | uniq
+)
+
+for pathname in $ARTICLES
 do
     if [[ -f "$pathname" ]] && [[ "$pathname" =~ ".article" ]]
     then
@@ -24,17 +47,4 @@ do
 
         ./compile/makelog.sh $pathname
     fi
-
-    if [[ "$pathname" == "./get/article/makefile.sh" ]]
-    then
-        for pathname in `ls ./src/articles/*.article`
-        do
-            BASENAME=${pathname##*/}
-            BASENAME=${BASENAME%%.*}
-            mkdir -p makefiles/articles
-            ./get/article/makefile.sh "$pathname" > makefiles/articles/$BASENAME
-        done
-    fi
 done
-
-
