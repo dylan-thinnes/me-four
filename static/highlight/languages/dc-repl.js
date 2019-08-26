@@ -29,8 +29,15 @@ function (hljs) {
         }
     ];
     return {
-        aliases: ['dc'],
+        aliases: ['dc-repl'],
         case_insensitive: false,
-        contains: dcSpec
-    }
+        contains: [
+            dcComment,
+            {
+                begin: '(> |  )',
+                end: '\n',
+                contains: dcSpec
+            }
+        ]
+    };
 }
