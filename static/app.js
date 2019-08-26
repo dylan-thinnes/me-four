@@ -185,6 +185,18 @@ initSection = function (section) {
             var title = toc.getElementsByTagName("h3")[0];
             title.appendChild(toggler);
         }
+
+        if (hljs != undefined) {
+            console.log("highlighting started...")
+            var codeBlocks = section.querySelectorAll("pre > code");
+            for (var ii = 0; ii < codeBlocks.length; ii++) {
+                var codeBlock = codeBlocks[ii];
+                var classes = codeBlock.parentNode.className;
+                codeBlock.className += " " + classes;
+                console.log("Highlighting...", codeBlock.parentNode);
+                hljs.highlightBlock(codeBlock);
+            }
+        }
     }
 
     // Explicitly execute scripts

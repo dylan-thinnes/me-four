@@ -11,7 +11,6 @@ then
     do
         echo """
 <script src='/`./utils/static/path.sh static/highlight/languages/$language.js`'></script>
-<script>hljs.initHighlighting();</script>
         """
     done
 fi
