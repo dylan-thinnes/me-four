@@ -60,6 +60,7 @@ referencesLocal = function (a) {
 
 /* History state changers and handlers */
 navigateTo = function (url) {
+    url = sanitizeUrl(url);
     history.pushState({}, "", url);
     onNavigate();
 } 
@@ -136,13 +137,26 @@ getContent = function (url, callback, error) {
 // Sections contain the content for a given endpoint and have a data-url attr
 // The page may be initialized with any number of sections
 
+var sanitizeUrl = function (url) {
+    if (url.slice(-1) === '/') {
+        return url.slice(0,-1);
+    } else if (url.slice(-11) === '/index.html') {
+        return url.slice(0,-11);
+    } else {
+        return url;
+    }
+}
+
 // Finds the section corresponding to a given url
 findSection = function (url) {
+    url = sanitizeUrl(url);
     if (url === "ERROR") return document.querySelector(".section#error");
     var sections = document.getElementsByClassName("section");
     for (var ii = 0; ii < sections.length; ii++) {
         var section = sections[ii];
         var sectionUrl = section.getAttribute("data-url");
+        if (sectionUrl == undefined) continue;
+        sectionUrl = sanitizeUrl(sectionUrl);
         if (sectionUrl == url) return section;
     }
 }
@@ -150,6 +164,7 @@ findSection = function (url) {
 // create a section container for content retrieved from an endpoint
 // append it to the page container
 createSection = function (url, content) {
+    url = sanitizeUrl(url);
     var section = document.createElement("div");
     section.classList.add("section");
     section.setAttribute("data-url", url);
