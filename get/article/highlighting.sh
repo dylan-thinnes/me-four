@@ -9,8 +9,14 @@ then
     """
     for language in $LANGUAGES
     do
+        echo "<script>"
         echo """
-<script src='/`./utils/static/path.sh static/highlight/languages/$language.js`'></script>
-        """
+hljs.registerLanguage(
+    \"$language\", 
+    `cat static/highlight/languages/$language.js`
+);
+        """ | ./utils/minify/js.sh
+        echo "</script>"
     done
 fi
+
