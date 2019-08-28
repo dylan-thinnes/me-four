@@ -206,10 +206,17 @@ initSection = function (section) {
             var codeBlocks = section.querySelectorAll("pre > code");
             for (var ii = 0; ii < codeBlocks.length; ii++) {
                 var codeBlock = codeBlocks[ii];
-                var classes = codeBlock.parentNode.className;
-                codeBlock.className += " " + classes;
-                console.log("Highlighting...", codeBlock.parentNode);
-                hljs.highlightBlock(codeBlock);
+                if (codeBlock.classList.contains("hljs")) continue;
+                var classes = codeBlock.parentNode.classList;
+                for (var jj = 0; jj < classes.length; jj++) {
+                    var currClass = classes[jj];
+                    if (hljs.getLanguage(currClass) != undefined) {
+                        console.log("Highlighting...", codeBlock.parentNode);
+                        codeBlock.classList.add(currClass);
+                        hljs.highlightBlock(codeBlock);
+                        break;
+                    }
+                }
             }
         }
     }
