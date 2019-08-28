@@ -201,7 +201,7 @@ initSection = function (section) {
             title.appendChild(toggler);
         }
 
-        if (hljs != undefined) {
+        if (window.hljs != undefined) {
             console.log("highlighting started...")
             var codeBlocks = section.querySelectorAll("pre > code");
             for (var ii = 0; ii < codeBlocks.length; ii++) {
