@@ -25,7 +25,7 @@ mockCollection = function (collection) {
     for (var ii = 0; ii < collection.length; ii++) {
         links[ii] = collection[ii];
     }
-    links.filter(referencesLocal).map(mockLink);
+    links.filter(referencesRemote).map(mockLink);
 }
 
 // Given an <a>, binds navigateTo and preventDefault, marks link as mocked
@@ -40,7 +40,7 @@ mockLink = function (a) {
 
 // Check if an <a> node references a local path and hasn't been mocked
 // mocking is the act by which we take a link and suppress it with JS
-referencesLocal = function (a) {
+referencesRemote = function (a) {
     // Use a.getAttribute instead of a.href since a.href coerces to full url
     url = a.getAttribute("href");
     
