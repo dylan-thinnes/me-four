@@ -1,0 +1,6 @@
+Haskulate
+https://github.com/dylan-thinnes/haskulator
+2
+
+A one-day shell scripting project to make very quick, in-terminal calculations using the full potential of the Haskell standard library.
+Uses cat and the Glasgow Haskell Compiler.

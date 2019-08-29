@@ -1,0 +1,6 @@
+ASRP Classifier
+https://github.com/dylan-thinnes/asrp-classifier
+6
+
+An image classifier to detect landing faces of irregular dice (archimedean
+semi-regular polyhedra) and calculate face probabilities using those samples.

@@ -1,0 +1,7 @@
+Word of the Lord - Bringing Stallman to You
+https://github.com/andmikey/created/blob/master/app.py
+1
+
+A completely free and open source hardware/software hack.
+At the press of a button, reads you a random Richard Stallman quote.
+Won the Github 'Spirit of the Hack' award. Run on a Raspberry Pi, using Wikiquotes and espeak.

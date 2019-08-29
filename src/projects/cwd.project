@@ -1,0 +1,7 @@
+cwd
+https://github.com/dylan-thinnes/cwd
+3
+
+Syncs working directories across multiple terminals and lets you push new
+working directories to a stack and pull them quickly. Good for those who live
+in the terminal like me.

@@ -1,0 +1,6 @@
+Random Bignum
+https://github.com/dylan-thinnes/random-bignum-rust
+3
+
+Provides large pseudorandom numbers on the command line. Mostly a utility for
+testing conway-wechsler and an attempt at a little program in Rust.

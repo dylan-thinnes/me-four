@@ -1,0 +1,6 @@
+youtube-archive
+https://github.com/dylan-thinnes/youtube-archive
+1
+
+Wraps youtube-dl in helper functions which facilitate multiple simulatneous downloads and remember which videos you've already downloaded.
+This improves on youtube-dl's name-collision approach to download decisions.

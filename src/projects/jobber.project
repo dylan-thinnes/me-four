@@ -1,0 +1,7 @@
+Jobber - A Job Tracker
+https://github.com/andmikey/jobber
+2
+
+Helps you keep track of multiple jobs while on a job hunt. 
+Originally made for a hackathon. 
+Uses React for the UI, Ruby on Rails for the backend. Still a work in progress.

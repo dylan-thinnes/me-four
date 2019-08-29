@@ -1,0 +1,7 @@
+conway-wechsler
+https://github.com/dylan-thinnes/conway-wechsler
+8
+
+I'm sure you're familiar with million & billion. Did you know that there is a
+system for writing all the -illions to infinity? conway-wechsler does this all
+for you, so you need never write out a number by hand ever again!

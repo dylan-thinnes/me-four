@@ -1,0 +1,6 @@
+SVGtoJS
+https://svgtojs.github.io
+1
+
+Converts SVG files into a series of drawing commands to a canvas.
+Saves a good deal of space when you need svgs on bitmaps and want to able to modify their attributes quickly, such as stroke and fill color.
