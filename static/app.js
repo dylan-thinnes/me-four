@@ -53,6 +53,9 @@ referencesLocal = function (a) {
     // If the link has already been mocked
     if (a.getAttribute("data-mocked") == "true") return false;
 
+    // If the link is only a fragment, consider it local
+    if ((/^#/).test(url)) return false;
+
     // If the link has a URI scheme, consider it non-local
     hasScheme = (/^\w+:\/\//).test(url)
     return !hasScheme;
