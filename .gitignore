@@ -2,12 +2,11 @@
 *.swo
 
 dist/
-src/articles/
-src/projects/
+src/articles/staging
+src/projects/hidden
 
 makelog
 
 clone
-src
 
 makefiles
