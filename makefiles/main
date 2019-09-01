@@ -27,7 +27,7 @@ blog : front ./get/article/* ./get/html-assets/blog/* ./src/articles/*
 	./compile/articles.sh $?
 	./compile/makelog.sh blog
 
-contact : front ./get/html-assets/contact/*
+contact : front ./get/html-assets/contact/* ./static/dylant-cv.pdf
 	./compile/section.sh contact
 	./compile/makelog.sh contact
 
