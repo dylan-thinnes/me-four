@@ -4,20 +4,15 @@ LANGUAGES=`./get/article/languages.sh $1`
 if [[ -n $LANGUAGES ]]
 then
     echo """
-<script src='/`./utils/static/path.sh static/highlight/highlight.js`'></script>
-<link rel='stylesheet' href='/`./utils/static/path.sh static/highlight/styles/monokai-sublime.css`' />
+<link rel='stylesheet' href='/`./utils/static/path.sh static/prism/themes/prism-okaidia.css`' />
+<script src='/`./utils/static/path.sh static/prism/components/prism-core.js`'></script>
     """
     for language in $LANGUAGES
     do
         if [[ -f "./static/highlight/languages/$language.js" ]]
         then
             echo "<script>"
-            echo """
-    hljs.registerLanguage(
-        \"$language\", 
-        `cat static/highlight/languages/$language.js`
-    );
-            """ | ./utils/minify/js.sh
+            cat "static/prism/components/prism-$language.js" | ./utils/minify/js.sh
             echo "</script>"
         fi
     done
