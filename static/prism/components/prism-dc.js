@@ -1,6 +1,6 @@
 (function (Prism) {
     Prism.languages.dc = {
-        'comment': /#.*$/,
+        'comment': /#.*$/m,
         'string': /\[[^\n]*\]/,
         'no_style': /{[^}]*}/,
         'number': /[0-9A-F]+/,

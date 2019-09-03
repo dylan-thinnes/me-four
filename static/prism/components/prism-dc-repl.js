@@ -3,13 +3,13 @@
         'no-repl': {
             pattern: /^(?!> ).+$/m,
             inside: {
-                'comment': /#.*$/,
+                'comment': /#.*$/m,
             }
         },
         'repl-start': {
             pattern: /^> [^\n]*/m,
             inside: {
-                'comment': /#.*$/,
+                'comment': /#.*$/m,
                 'string': /\[[^\n]*\]/,
                 'no_style': /{[^}]*}/,
                 'number': /[0-9A-F]+/,
