@@ -254,7 +254,7 @@ Most importantly, macros can call other macros too, or even themselves!
 > 1         # Push 1 onto stack
 > lb x      # Load macro from b, execute
 > f
-16          # New value is 32, since we doubled four times
+16          # New value is 16, since we doubled four times
 ```
 
 Using macros, we can implement common programming language features such as
