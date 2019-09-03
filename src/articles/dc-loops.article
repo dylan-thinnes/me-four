@@ -341,8 +341,13 @@ once.
 
 ```dc-repl
 > [
-    lin     # Load the current loop index & print it
-> ] 01- lLx
+>   lin     # Load the current loop index...
+>   p       # Print it...
+>   s_      # Store it in "_", the garbage register
+> ] sx      # Store that as the execution macro
+> 0 1 - si  # Store -1 in the index
+
+> lLx       # Run the loop
 -1          # Even though the loop counter is negative,
             # we still iterate once
 ```
@@ -468,18 +473,18 @@ Now we can do such things as nested loops:
 
 ```dc-repl
 > [
-      [
-          # Print the current index without a newline
-          lin
-      ]
-      # Get the index of the outer loop, increment by 1, 
-      # run above macro that many times
-      li1+
-      lLx
+>     [
+>         # Print the current index without a newline
+>         lin
+>     ]
+>     # Get the index of the outer loop, increment by 1, 
+>     # run above macro that many times
+>     li1+
+>     lLx
 
-      # Print a newline
-      []ps_
-  ]
+>     # Print a newline
+>     []ps_
+> ]
 > 4
 > lLx
 3210
@@ -507,7 +512,7 @@ changing our use of the "X" register from "s" and "l" to "S" and "L", we can
 restore it at the end of our loop and make our loop completely reusable as far
 as outside code is concerned.
 
-```dc-repl
+```dc
 [
     Si
     Sx
@@ -557,9 +562,9 @@ A quick and dirty solution using our previous loop:
 
 # Iterate down & print
 > [
-      La  # Load from register "a", store in global stack
-      p   # Print it
-  ] 4 lLx # Do this 4 times
+>     La  # Load from register "a", store in global stack
+>     p   # Print it
+> ] 4 lLx # Do this 4 times
 A
 B
 C
@@ -580,7 +585,7 @@ is cleaning up and where.
 It turns out, setting up a postcondition is easy when using a recursive
 implementation of a loop:
 
-```dc-repl
+```dc
 [
     Si
     Sc # New register "c" for clean-up
@@ -635,11 +640,17 @@ processing pieces of it and writing them somewhere else.
 The main body must contain a `L{register}` at its end, and the cleanup body
 must contain a `S{register}` at the start. In visual terms:
 
-```dc-repl
+```dc
 # Custom main logic goes before "L{register}"
-[{custom main logic} L{register}]
+[
+    {custom main logic}
+    L{register}
+]
 # Custom cleanup logic goes after "S{register}"
-[S{register} {custom cleanup logic}]
+[
+    S{register}
+    {custom cleanup logic}
+]
 {loop counter} 
 lLx
 ```
@@ -653,17 +664,17 @@ register "a" and adds all of the even ones to register "t":
 
 ```dc-repl
 > [
-      # If the top of register "a" is even, store in t
-      [
-          la # Copy off the top of register "a"
-          St # Push it to register "t"
-      ]Sx
-      la2% 0 =x
-      Lxs_
-
-      # Finish w/ La, as is normal for this pattern
-      La
-  ]
+>     # If the top of register "a" is even, store in t
+>     [
+>         la # Copy off the top of register "a"
+>         St # Push it to register "t"
+>     ]Sx
+>     la2% 0 =x
+>     Lxs_
+>
+>     # Finish w/ La, as is normal for this pattern
+>     La
+> ]
 > [Sa] # Cleanup w/ Sa
 > 4
 > lLx
@@ -677,9 +688,17 @@ pattern allows editing in-place of the stack. In short, it's an in-place map.
 The main body must contain a `L{register}` at its **start**, or the cleanup
 body must contain a `S{register}` at the **end**. In visual terms:
 
-```dc-repl
-[La {mapping logic}]     # Mapping logic can either go after La,
-[{mapping logic} Sa]     # or before Sa
+```dc
+# Mapping logic can either go after La,
+[
+    La 
+    {mapping logic}
+]
+# or before Sa
+[
+    {mapping logic}
+    Sa
+]
 {loop counter}
 lLx
 ```
@@ -694,9 +713,9 @@ For example, this sample will add 1 to the first four values of the register
 
 ```dc-repl
 > [
-      La    # Start w/ La, as is for pattern
-      1+    # Increment top of stack by 1
-  ]
+>     La    # Start w/ La, as is for pattern
+>     1+    # Increment top of stack by 1
+> ]
 > [Sa]      # Finish w/ Sa
 > 4
 > lLx
@@ -720,9 +739,17 @@ initial accumulator to the global stack. In visual terms:
 ```dc
 {original accumulator}
 # Custom main logic goes before "L{register} r"
-[{custom main logic} L{register} r]
+[
+    {custom main logic}
+    L{register}
+    r
+]
 # Custom cleanup logic goes after "S{register}"
-[r S{register} {custom cleanup logic}]
+[
+    r
+    S{register}
+    {custom cleanup logic}
+]
 {loop counter} 
 lLx
 ```
@@ -798,7 +825,7 @@ Internally, we can use the "b" register (chosen for **b**oolean) to store the
 macro. The implementation is actual quite trivial to extend from that of our
 existing loop.
 
-```dc-repl
+```dc
 [
     Sb # Replace "i" w/ "b" for predicate macro
     Sc
