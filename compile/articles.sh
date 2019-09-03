@@ -45,6 +45,11 @@ do
         echo "$HTML" | ./get/index.sh "$TITLE" "$BASEPATH/index.html" > $ROOTPATH/index.html
         echo "$HTML" > $NOLAYOUTPATH/index.html
 
+        BASENAME=${pathname##*/}
+        BASENAME=${BASENAME%%.*}
+        mkdir -p makefiles/articles
+        ./get/article/makefile.sh "$pathname" > makefiles/articles/$BASENAME
+
         ./compile/makelog.sh $pathname
     fi
 done
