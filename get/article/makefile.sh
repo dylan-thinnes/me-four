@@ -2,7 +2,7 @@
 DEPENDENCY_LANGUAGES=$(
     for language in `./get/article/languages.sh $1`
     do
-        echo -n "./static/highlight/languages/$language.js "
+        echo -n "./static/prism/components/prism-$language.js "
     done
 )
 echo """
