@@ -204,19 +204,16 @@ initSection = function (section) {
             title.appendChild(toggler);
         }
 
-        if (window.hljs != undefined) {
-            console.log("highlighting started...")
+        if (window.Prism != undefined) {
             var codeBlocks = section.querySelectorAll("pre > code");
             for (var ii = 0; ii < codeBlocks.length; ii++) {
                 var codeBlock = codeBlocks[ii];
-                if (codeBlock.classList.contains("hljs")) continue;
                 var classes = codeBlock.parentNode.classList;
                 for (var jj = 0; jj < classes.length; jj++) {
                     var currClass = classes[jj];
-                    if (hljs.getLanguage(currClass) != undefined) {
-                        console.log("Highlighting...", codeBlock.parentNode);
-                        codeBlock.classList.add(currClass);
-                        hljs.highlightBlock(codeBlock);
+                    if (Prism.languages[currClass] != undefined) {
+                        codeBlock.classList.add("language-" + currClass);
+                        Prism.highlightElement(codeBlock);
                         break;
                     }
                 }
