@@ -22,8 +22,8 @@ front : ./get/*.sh ${FAVICON} ${PROFILE} ${COLORIZE} ${STYLE} ${SCRIPT}
 	echo "" | ./get/index.sh "" "/" > ./dist/index.html
 	./compile/makelog.sh front
 
-DRAFTS   = $(shell [[ ${TESTING} == "1" ]] && echo ./src/articles/drafts/*)
-blog : front ./get/article/* ./get/html-assets/blog/* ./src/articles/* ${DRAFTS}
+DRAFTS   = $(shell [[ ${TESTING} == "1" ]] && echo ./src/articles/drafts/*.article)
+blog : front ./get/article/* ./get/html-assets/blog/* ./src/articles/*.article ${DRAFTS}
 	./compile/section.sh blog
 	./compile/articles.sh $?
 	./compile/makelog.sh blog
