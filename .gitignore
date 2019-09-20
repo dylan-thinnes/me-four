@@ -2,7 +2,7 @@
 *.swo
 
 dist/
-src/articles/staging
+src/articles/drafts
 src/projects/hidden
 
 makelog
