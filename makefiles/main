@@ -23,7 +23,7 @@ front : ./get/*.sh ${FAVICON} ${PROFILE} ${COLORIZE} ${STYLE} ${SCRIPT}
 	./compile/makelog.sh front
 
 ARTICLES = $(shell ./get/article/glob.sh)
-blog : front ./get/article/* ./get/html-assets/blog/* ${ARTICLES}
+blog : front ./get/article/* ./get/html-assets/blog/* ${ARTICLES} ./testing.sh
 	./compile/section.sh blog
 	./compile/articles.sh $?
 	./compile/makelog.sh blog
