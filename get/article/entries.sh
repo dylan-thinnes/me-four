@@ -1,5 +1,5 @@
 (
-    for filename in src/articles/*.article
+    for filename in `./get/article/glob.sh`
     do
         PRECEDENCE=`./get/article/precedence.sh "$filename"`
         echo "$PRECEDENCE $filename"

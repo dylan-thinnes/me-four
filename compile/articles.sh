@@ -8,7 +8,7 @@ ARTICLES=$(
     do
         if [[ "$pathname" == "./get/article/makefile.sh" ]]
         then
-            for pathname in `ls ./src/articles/*.article`
+            for pathname in `./get/article/glob.sh`
             do
                 BASENAME=${pathname##*/}
                 BASENAME=${BASENAME%%.*}
@@ -19,7 +19,7 @@ ARTICLES=$(
         then
             echo $pathname
         else
-            ls ./src/articles/*.article
+            ./get/article/glob.sh
         fi
     done | sort | uniq
 )
