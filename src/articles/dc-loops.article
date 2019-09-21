@@ -408,7 +408,9 @@ run after macro in "L" has pulled our macro & loop count directly from the
 stack.
 
 ```dc-repl
-> [[hello]ps_]
+> [
+>   [hello]ps_
+> ]
 > 4
 > lLx
 hello
