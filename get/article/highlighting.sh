@@ -9,7 +9,7 @@ then
     """
     for language in $LANGUAGES
     do
-        if [[ -f "./static/highlight/languages/$language.js" ]]
+        if [[ -f "./static/prism/components/prism-$language.js" ]]
         then
             echo "<script>"
             cat "static/prism/components/prism-$language.js" | ./utils/minify/js.sh
