@@ -1,2 +1,6 @@
 #!/bin/bash
-cd dist && git stage . && git commit -m "`date`" && git push
+if ./testing.sh; then
+    echo "Testing mode is enabled. Please compile without testing mode."
+else
+    cd dist && git stage . && git commit -m "`date`" && git push
+fi
