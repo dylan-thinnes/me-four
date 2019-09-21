@@ -235,7 +235,8 @@
 			"owner": "dylan-thinnes"
 		},
 		"dc-repl": {
-			"title": "DC",
+			"title": "DC-repl",
+            "require": "dc",
 			"owner": "dylan-thinnes"
 		},
 		"diff": {
