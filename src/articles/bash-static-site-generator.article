@@ -1,6 +1,7 @@
 Bash as a Static Site Generator
 Dylan Thinnes
 Going from Rails to Bash to generate this blog quicker and cleaner.
+1569059108
 
 Originally, this site was served using Ruby on Rails, deployed on Heroku. I
 have since migrated to a few custom Bash scripts that serve as a quick and
