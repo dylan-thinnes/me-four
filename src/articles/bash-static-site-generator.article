@@ -79,8 +79,6 @@ The original Rails implementation was a problem for me for a few reasons:
    deciding on a text-based format for my blog posts & other dynamic content,
    implementing a templating language, and versioning my static files.
 
-   So, that's what I did -- I wrote something custom.
-
 ### 5. There is one way to do it
 
    I quite like going off the beaten path with my website features, by
@@ -95,10 +93,9 @@ The original Rails implementation was a problem for me for a few reasons:
 
 ## The Fundamentals
 
-Before I delve into specifics, I'd like to clarify that for the most part, the
-migration was only meant to be a change in host and build process. The styles,
-the javascripts, and the layout were to remain identical, or as identical as
-possible.
+For the most part, the migration was only meant to be a change in host and
+build process. The styles, the javascripts, and the layout were to remain
+identical, or as identical as possible.
 
 Most importantly, my site is strongly dedicated to being as tiny as possible
 while still being sleek and fairly pretty.
