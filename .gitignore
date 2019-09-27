@@ -2,6 +2,7 @@
 *.swo
 
 dist/
+webtex-hist/
 src/articles/drafts
 src/projects/hidden
 
