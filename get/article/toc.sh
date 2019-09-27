@@ -15,7 +15,7 @@ for my $line (split /\n/, $_) {
 }
 if ($i > 0) {
     for my $line (split /\n/, $_) {
-        if ($line =~ m/<h(\d)[^>]*id="([^"]+)"[^>]*>(.+)<\/h\1>/) {
+        if ($line =~ m/<h(\d)[^>]*id="([^"]+)"[^>]*>([^<]+).*<\/h\1>/) {
             print " "x(($1-$m)*4);
             print "* ";
             print "[${3}](#${2})";
