@@ -263,3 +263,8 @@ body {
 .section#error   > .text {
     transition-delay: 0s;
 }
+
+blockquote {
+    color: #444;
+    font-weight: italic;
+}
