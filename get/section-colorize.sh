@@ -22,7 +22,7 @@ elif [[ "$URL" == "/links" ]]
 then
     color="#732d9c"
 else
-    color="#222222"
+    color="#333333"
 fi
 
 echo "
