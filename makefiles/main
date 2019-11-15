@@ -5,7 +5,7 @@ SHELL = /bin/bash
 # Use the makelog directory to remember when a target was last run
 VPATH = ./makelog:.
 
-all : front static_assets blog contact about projects links
+all : front static_assets blog contact about projects links stream
 prod : all minify
 
 RECURSIVE_STATIC = $(shell find static/ -type f -not -name ".*")
@@ -45,6 +45,10 @@ links : front ./get/links/* ./get/html-assets/links/* ./src/links/*
 	cp -r clone dist
 	./compile/section.sh links
 	./compile/makelog.sh links
+
+stream : front ./get/stream/* ./get/html-assets/stream/*
+	./compile/section.sh stream
+	./compile/makelog.sh stream
 
 MINIFIABLE = $(shell find dist/ -type f \( -name '*.html' -or -name '*.css' -or -name '*.js' \) -and -not -name ".*")
 minify : ${MINIFIABLE}
