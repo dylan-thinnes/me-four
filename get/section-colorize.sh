@@ -21,6 +21,9 @@ then
 elif [[ "$URL" == "/links" ]]
 then
     color="#732d9c"
+elif [[ "$URL" == "/stream" ]]
+then
+    color="#663300"
 else
     color="#333333"
 fi
