@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<rss version="2.0" xmlns:blogChannel="http://backend.userland.com/blogChannelModule">
+	<channel>
+		<title>Dylan's Blog</title>
+        <link>https://dylant.org/blog</link>
+        <description>
+            I am a student of Comp Sci at the University of Edinburgh.  In my
+            spare time, I enjoy camping, Aikido, and coding. This is my blog!
+        </description>
+		<language>en-us</language>
+		<copyright>Copyright Dylan Thinnes</copyright>
+        <lastBuildDate><%=date=%></lastBuildDate>
+        <generator>https://github.com/dylan-thinnes/me-four</generator>
+		<item>
+			<title></title>
+			<link></link>
+			<guid></guid>
+			<description></description>
+			<pubDate></pubDate>
+			<author></author>
+            <comments>http://devnull-as-a-service.com/dev/null</comments>
+        </item>
+    </channel>
+</rss>
