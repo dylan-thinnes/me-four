@@ -23,7 +23,7 @@ what they do when executed:
 
 ## INC
 
-**INC** is very simple: it is supplied a number $n$ and increments the value in
+**INC** is very simple: it is supplied a number "n" and increments the value in
 register $\text{r}n$ by 1.
 
 For example, the instruction `INC 0` would increment the value in register
@@ -31,13 +31,13 @@ $\text{r}0$ by 1.
 
 ## DECJZ
 
-**DECJZ** is the "kitchen sink" instruction. It takes two natural numbers, "n"
-and "destination".
+**DECJZ** is the "kitchen sink" instruction that gives us most of our power. It
+takes two natural numbers, "n" and "destination".
 
-If register "n" is 0, the instruction jumps the machine's counter to the
+If register $\text{r}n = 0$, the instruction jumps the machine's counter to the
 position denoted by "destination".
 
-If register "n" is greater than 0, the instruction decrements register "n" by 1
+If register $\text{r}n > 0$, the instruction decrements register $\text{r}n$ by 1
 and doesn't jump.
 
 For example, the instruction `DECJZ 0 5` checks register $\text{r}0$. If the
@@ -47,7 +47,8 @@ subtracts 1 from $\text{r}0$ and proceeds to the next instruction.
 ## An Example Program
 
 Let's go through an example program. I've marked the current instruction with a
-"*", and I report the numbers in registers $\text{r}1$ - $\text{r}4$ at the top.
+`*`, and I report the numbers in registers $\text{r}0$ - $\text{r}4$ in a row
+at the top.
 
 ```
 registers 0 0 0 0 0
@@ -60,9 +61,9 @@ registers 0 0 0 0 0
  7: inc 4
 ```
 
-We start, as is only natural, at the beginning, with `inc 0`. This increments
-the number in $\text{r}0$ by 1. Then we progress to the next instruction. The
-machine state thus becomes:
+The machine starts, as is only natural, at the beginning, with `inc 0`. This
+increments the number in $\text{r}0$ by 1. Then it steps forward to the next
+instruction. The machine state thus becomes:
 
 ```
 registers 1 0 0 0 0
@@ -155,8 +156,8 @@ by incrementing $\text{r}4$.
 
 This means that using the simple construct above, we have formed a for loop!
 It would be trivial to convert it to a while loop, simply by incrementing
-$\text{r}0$ by 1 within the body of the loop, ensuring that it never is 0 when
-the `decjz 0 7` instruction rolls around.
+$\text{r}0$ by 1 within the body of the loop, ensuring that $\text{r}0$ never
+is 0 when the `decjz 0 7` instruction gets executed.
 
 # Implementation in Haskell
 
@@ -241,7 +242,7 @@ In the interest of speed, we can also adapt our `Program` to a `Map` or an
 simpler, but there is little other reason to not choose `Array`.
 
 ```hs
-type Program = Map Integer Instruction
+type Program = Map Label Instruction
 ```
 
 ### The Interpreter
@@ -258,19 +259,22 @@ set and retrieve Registers in a machine state.
 import Data.Maybe (fromMaybe)
 
 getReg :: Register -> State -> Integer
-getReg target (State {..}) = fromMaybe 0 $ lookup target registers
+getReg target (State {..})
+    = fromMaybe 0 $ Data.Map.lookup target registers
 
 setReg :: Register -> Integer -> State -> State
-setReg reg val state@(State {..}) = state { registers = L.insert reg val registers }
+setReg target val state@(State {..})
+    = state { registers = insert target val registers }
 
 updateReg :: Register -> (Integer -> Integer) -> State -> State
-updateReg target f state = setReg target (f $ getReg reg state) state
+updateReg target f state = setReg target (f $ getReg target state) state
 ```
 
 > *Note:* In the actual implementation provided, I use lenses, which are a
 > nifty concept you can find out about
 > [here](https://github.com/ekmett/lens/wiki/Overview). They eliminate the need
-> to write separate get, set, and update functions.
+> to write separate get, set, and update functions. They can also do far more
+> if you put in the hard time to learn them.
 
 We'll also write two helpers for the program counter: One for setting it (as
 we'd do with **DECJZ**), and one for stepping it forward by 1 (as we'd do with
