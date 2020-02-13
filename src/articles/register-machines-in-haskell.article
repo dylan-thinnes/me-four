@@ -1,18 +1,19 @@
-Register Machines and More
+Register Machines, Part 1 - The Fundamentals
 Dylan Thinnes
 In this post, we go over the concept of register machines, and how some of Haskell's strengths can be used to implement them.
+1581520266
 
 # What are Register Machines?
 
 Register machines, at their most basic level, are fairly easy to understand and explain.
 
-Imagine a machine with an infinite number of "registers", $\text{r}0$, $\text{r}1$, etcetera,
-which each contains a natural number (any integer $0, 1, \dots$). Every
-register starts out containing $0$.
+Imagine a machine with an infinite number of "registers", $\text{r}0$,
+$\text{r}1$, etcetera, which each contains a natural number (any integer $0, 1,
+\dots$). Every register starts out containing $0$.
 
 This machine also has a finite list of instructions, $I$, which it executes in
-sequence. The machine keeps track of which instruction it's currently on using a counter
-which has the index of the instruction its currently on.
+sequence. The machine keeps track of which instruction it's currently on using
+a "counter" which indexes into $I$.
 
 When the program counter moves past to a natural number for which no
 instruction is defined, we stop running the machine and say it has "halted",
