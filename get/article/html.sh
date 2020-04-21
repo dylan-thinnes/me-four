@@ -8,7 +8,7 @@ AUTHOR=`./get/article/author.sh "$1"`
 BLURB=`./get/article/blurb.sh "$1"`
 
 # Extract date from stat
-DATE=`date -r "$1"`
+DATE=`./get/article/date.sh "$1"`
 
 # Extract server path from filename
 FILENAME=`basename "$1"`
