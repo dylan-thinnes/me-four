@@ -3,6 +3,7 @@ Dylan Thinnes
 Going from Rails to Bash to generate this blog quicker and cleaner.
 1569059108
 
+<%=commands_off=%>
 Originally, this site was served using Ruby on Rails, deployed on Heroku. I
 have since migrated to a few custom Bash scripts that serve as a quick and
 dirty templating engine, minifier, and build system, which then upload to
@@ -196,3 +197,4 @@ Now that my scripts emulate most of core features that are needed to implement
 the site, I proceed to more interesting scripts and page generation, most of
 which can be seen in the [repo for this
 website](https://github.com/dylan-thinnes/me-four).
+<%=commands_on=%>
