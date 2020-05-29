@@ -1,6 +1,7 @@
 Register Machines, Part 3 - Custom Instructions
 Dylan Thinnes
 In this post, we will go over how to allow our machine's instructions to be extended by anyone, without knowledge of other instruction extensions.
+1587483454
 
 # Defining Custom Instructions
 
@@ -377,8 +378,9 @@ Carte"](https://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.101.4131),
 which I mentioned at the beginning of this blog post, explains how the clever
 use of typeclasses can give you an "injector" function `inj` which
 automatically adds the correct `L` and `R` constructors. The particularly
-motivated the option can read it and understand how to implement such a
-function, but such an explanation would make this blog post far too long.
+motivated should feel free to read the paper and understand how to implement
+such a function, but such an explanation would make this blog post far too
+long.
 
 # What's Next?
 
@@ -391,8 +393,8 @@ type-safe.
 
 Here is what remains from the list of TODOs we covered at the end of Part 1:
 
+- Parser to read in RM pseudo-source-code like in section 1 and run it.
 - "Macros", so we can write and insert subprograms.
-- Ability to add & interpret more instructions dynamically.
 - Non-deterministic & probabilistic machines.
 
 These and more will be covered in future blog posts! Or, if you can't wait, you
