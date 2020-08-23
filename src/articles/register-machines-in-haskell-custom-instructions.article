@@ -351,6 +351,128 @@ There we have it: the free ability to mix and match instructions, across
 modules and compilations, inside and outside the package, and a free
 interpreter to go along with it!
 
+### Parameterize labels to Assembly, Machines, and "run"
+
+> Note: This parameterize subsection was added later on the suggestion of a
+> friend.
+
+Of course, with the ability to mix and match instructions, we need to be able
+to put them inside our `Program`, `Machine`, `Assembly`, `assembled`, and
+`run`. As of the redefinition of `interpret` all of those function will be
+broken. Luckily, by working with types this process is quite mechanical and
+easy!
+
+Our old definitions of `Program`, `Machine`, and `Assembly` encoded
+`Instruction` statically like this:
+
+```hs
+type Program instr label = [(Maybe label, Instruction label)]
+type Assembled label = Array Position (Instruction (Either label Position))
+data Machine label = Machine
+    { assembled :: Assembled label
+    , state :: State label
+    }
+```
+
+You can see that `Program` and `Assembled` are where `Instruction` is placed,
+so to allow free-form `Instruction`s, we need to add a new argument `instr` to
+all three types to replace `Instruction`.
+
+```hs
+-- Add instr parameter, replace Instruction
+type Program instr label = [(Maybe label, instr label)]
+-- Add instr parameter, replace Instruction
+type Assembled instr label = Array Position (instr (Either label Position))
+-- Add instr parameter, pass to Assembled
+data Machine instr label = Machine
+    { assembled :: Assembled instr label
+    , state :: State label
+    }
+```
+
+Adapting `assemble`, `toMachine`, and `run` now only require a few type
+signatures to change. We'll start with `assemble`.
+
+First, here is the old code for `assemble` in full:
+
+```hs
+{-# LANGUAGE ScopedTypeVariables #-}
+import Data.Map ((!?))
+
+assemble :: forall label. (Ord label) => Program label -> Assembled label
+assemble program = assembled
+    where
+    -- First, get labels with positions
+    lpos = labelsPositions program
+    -- Define a function which will "assemble" a given label to a Position, if
+    -- it exists
+    assembleLabel :: label -> Either label Position
+    assembleLabel label = mayToErr (lpos !?) label
+    -- Get all instructions, and "assemble" their labels, using fmap
+    instrs :: [Instruction (Either label Position)]
+    instrs = map (fmap assembleLabel) (map snd program)
+    -- Zip together positions and instrs, and turn that into an Array
+    assembled = listToArray instrs
+```
+
+And what follows is a brief of the only changes that need to be made to update `assemble`:
+
+```hs
+-- old sig: forall label.       (Ord label)                => Program       label -> Assembled       label
+assemble :: forall label instr. (Functor instr, Ord label) => Program instr label -> Assembled instr label
+assemble program = assembled
+    where
+    ...
+    -- old sig :: [Instruction (Either label Position)]
+    instrs     :: [instr       (Either label Position)]
+    ...
+```
+
+As you can see, only a few type signatures were changed - no code actually had
+to change. Similarly, `toMachine` only needs a change in type signature:
+
+```hs
+-- Old version
+toMachine :: (Ord label) => Program label -> Machine label
+toMachine program = Machine (assemble program) (State (Right 0) Data.Map.empty)
+```
+
+```
+-- New version
+toMachine :: (Functor instr, Ord label) => Program instr label -> Machine instr label
+toMachine program = Machine (assemble program) (State (Right 0) Data.Map.empty)
+```
+
+Changes for `run` also involve the removal of the `interpret` parameter, since
+we now get `interpret` from the `IsInstruction` constraint. Otherwise, only
+types change. Here is the old version:
+
+```hs
+run :: Interpreter label -> Machine label -> Machine label
+run interpret machine@(Machine {..})
+    = case currInstruction machine of
+        -- If there is no instruction, assume the machine has halted and return it
+        Nothing -> machine
+        -- If there is an instruction, transform the state using it, and run
+        -- the interpreter again on that new machine
+        Just instruction -> run interpret
+                          $ machine { state = interpret instruction state }
+```
+
+And here is the new version:
+
+```hs
+run :: IsInstruction instr => Machine instr label -> Machine instr label
+run machine@(Machine {..}) -- Remove "interpret" parameter
+    = case currInstruction machine of
+        -- If there is no instruction, assume the machine has halted and return it
+        Nothing -> machine
+        -- If there is an instruction, transform the state using it, and run
+        -- the interpreter again on that new machine
+        Just instruction -> run -- Remove passing in of "interpret" parameter
+                          $ machine { state = interpret instruction state }
+```
+
 # A Minor Caveat
 
 The caveat is this: when constructing our programs by hand, we now need to
